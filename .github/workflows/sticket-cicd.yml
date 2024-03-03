@@ -28,7 +28,7 @@ jobs:
         aws-region: us-east-2
 
     - name: Build and Push Docker Image
-      run: ./gradlew jib --image=${{ secrets.ECR_IMAGE_URI }}
+      run: ./gradlew jib --image="${{ secrets.ECR_IMAGE_URI }}:${{ github.sha }}"
       
     - name: CURL request to Terraform Cloud
       run: |
@@ -38,7 +38,6 @@ jobs:
         -d '{
           "data": {
             "attributes": {
-              "allow-empty-apply": true,
               "message": "Triggered via API"
             },
             "type":"runs",
