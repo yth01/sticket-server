@@ -38,6 +38,7 @@ jobs:
         -d '{
           "data": {
             "attributes": {
+              "allow-empty-apply": true,
               "message": "Triggered via API"
             },
             "type":"runs",
