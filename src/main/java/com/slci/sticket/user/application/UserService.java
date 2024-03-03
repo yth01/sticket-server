@@ -7,9 +7,6 @@ import com.slci.sticket.user.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Map;
-
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -21,12 +18,12 @@ public class UserService {
         return UserResponseDto.of(user);
     }
 
-    public Map<String, String> createUser(UserRequestDto userRequestDto) {
-        userRepository.save(
+    public UserResponseDto createUser(UserRequestDto userRequestDto) {
+        User user = userRepository.save(
             User.builder()
                     .name(userRequestDto.getName())
                     .build()
         );
-        return Collections.singletonMap("message", "유저가 저장되었습니다.");
+        return UserResponseDto.of(user);
     }
 }
