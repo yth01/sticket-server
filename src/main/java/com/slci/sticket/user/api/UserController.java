@@ -9,4 +9,9 @@ public class UserController {
     public String getUser() {
         return "user";
     }
+
+    @GetMapping("/user2")
+    public String getUser2() {
+        return "user2";
+    }
 }
