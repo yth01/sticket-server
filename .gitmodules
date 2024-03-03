@@ -1,0 +1,4 @@
+[submodule "sticket-security"]
+	path = sticket-security
+	url = https://github.com/yth01/sticket-security.git
+	branch = main
