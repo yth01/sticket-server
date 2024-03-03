@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public Map<String, String> createUser(UserRequestDto userRequestDto) {
+    public UserResponseDto createUser(UserRequestDto userRequestDto) {
         return userService.createUser(userRequestDto);
     }
 }
