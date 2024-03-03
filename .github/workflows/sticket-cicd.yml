@@ -30,3 +30,24 @@ jobs:
     - name: Build and Push Docker Image
       run: ./gradlew jib --image=${{ secrets.ECR_IMAGE_URI }}
       
+    - name: CURL request to Terraform Cloud
+      run: |
+        curl -X POST https://app.terraform.io/api/v2/runs \
+        -H "Content-Type: application/vnd.api+json" \
+        -H "Authorization: Bearer ${{ secrets.TERRAFORM_CLOUD_TOKEN }}" \
+        -d '{
+          "data": {
+            "attributes": {
+              "message": "Triggered via API"
+            },
+            "type":"runs",
+            "relationships": {
+              "workspace": {
+                "data": {
+                  "type": "workspaces",
+                  "id": "${{ secrets.TERRAFORM_WORKSPACE_ID }}"
+                }
+              }
+            }
+          }
+        }'
