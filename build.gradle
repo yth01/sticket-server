@@ -33,3 +33,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+processResources.dependsOn('copySecret')
+task copySecret(type: Copy) {
+	from './sticket-security'
+	include '*'
+	into 'src/main/resources'
+}
